@@ -11,8 +11,7 @@ def is_integer(value: float) -> bool:
 def number2str(number: Union[float, int]) -> str:
     if is_integer(number):
         return str(int(number))[:max_digit_count]
-    else:
-        return str(number)[:max_digit_count]
+    return str(number)[:max_digit_count]
 
 
 class Calculator:
@@ -46,15 +45,53 @@ class Calculator:
             self._total /= current
         if operation == OperationList.MOD:
             self._total %= current
+        if operation == OperationList.EXP:
+            self._total = math.pow(self._total, current)
 
+        if operation == OperationList.SQRT:
+            self._current = number2str(math.sqrt(current))
+        if operation == OperationList.POWER2:
+            self._current = number2str(math.pow(current, 2))
+        if operation == OperationList.POWER3:
+            self._current = number2str(math.pow(current, 3))
         if operation == OperationList.REVERSE:
             if current == 0:
                 raise ZeroDivisionError
             self._current = number2str(1 / current)
-        if operation == OperationList.POWER2:
-            self._current = number2str(math.pow(current, 2))
-        if operation == OperationList.SQRT:
-            self._current = number2str(math.sqrt(current))
+        if operation == OperationList.MODUL:
+            self._current = number2str(math.fabs(current))
+        if operation == OperationList.FACTORIAL:
+            if not is_integer(current):
+                raise TypeError
+            self._current = number2str(math.factorial(int(current)))
+        if operation == OperationList.COS:
+            self._current = number2str(math.cos(math.radians(current)))
+        if operation == OperationList.SIN:
+            self._current = number2str(math.sin(math.radians(current)))
+        if operation == OperationList.TAN:
+            self._current = number2str(math.tan(math.radians(current)))
+        if operation == OperationList.ACOS:
+            self._current = number2str(math.degrees(math.acos(current)))
+        if operation == OperationList.ASIN:
+            self._current = number2str(math.degrees(math.asin(current)))
+        if operation == OperationList.ATAN:
+            self._current = number2str(math.degrees(math.atan(current)))
+        if operation == OperationList.PI:
+            self._current = number2str(math.pi)
+        if operation == OperationList.E:
+            self._current = number2str(math.e)
+        if operation == OperationList.SEC:
+            self._current = number2str(1 / math.cos(math.radians(current)))
+        if operation == OperationList.CSC:
+            self._current = number2str(1 / math.sin(math.radians(current)))
+        if operation == OperationList.EXP10:
+            self._current = number2str(math.pow(10, current))
+        if operation == OperationList.LN:
+            self._current = number2str(math.log(current, math.e))
+        if operation == OperationList.LOG2:
+            self._current = number2str(math.log2(current))
+        if operation == OperationList.LOG10:
+            self._current = number2str(math.log10(current))
 
     def number_enter(self, value: str) -> str:
         if self._current == '0' and value == '0':
@@ -87,6 +124,9 @@ class Calculator:
                 self._current = number2str(self._total)
             self._operation = operation
         except ZeroDivisionError:
+            self.clear_input()
+            return 'Err'
+        except TypeError:
             self.clear_input()
             return 'Err'
 

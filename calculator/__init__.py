@@ -9,6 +9,8 @@ class OperationList:
     DEL = 'DEL'
 
     TOTAL = 'TOTAL'
+    SIGN = 'SIGN'
+
     SUM = 'SUM'
     DIFF = 'DIFF'
     MULTI = 'MULTI'
@@ -16,8 +18,25 @@ class OperationList:
     MOD = 'MOD'
     SQRT = 'SQRT'
     POWER2 = 'POWER2'
+    POWER3 = 'POWER3'
     REVERSE = 'REVERSE'
-    SIGN = 'SIGN'
+    PI = 'PI'
+    COS = 'COS'
+    SIN = 'SIN'
+    TAN = 'TAN'
+    E = 'E'
+    ACOS = 'ACOS'
+    ASIN = 'ASIN'
+    ATAN = 'ATAN'
+    LN = 'LN'
+    EXP = 'EXP'
+    EXP10 = 'EXP10'
+    SEC = 'SEC'
+    CSC = 'CSC'
+    LOG2 = 'LOG2'
+    LOG10 = 'LOG10'
+    FACTORIAL = 'FACTORIAL'
+    MODUL = 'MODUL'
 
 
 OnTotalOperations: List[str] = [
@@ -26,4 +45,5 @@ OnTotalOperations: List[str] = [
     OperationList.MULTI,
     OperationList.DIV,
     OperationList.MOD,
+    OperationList.EXP,
 ]
